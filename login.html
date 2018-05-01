@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>Login</title>
+<!-- Include CSS File Here -->
+<link rel="stylesheet" href="css/login.css"/>
+<!-- Include JS File Here -->
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="js/login.js"></script>
+</head>
+<body>
+<div class="login-page" >
+  <div class="form">
+    <form class="login-form" name="loginForm" method="post" action="index.html">
+      <input type="text" placeholder="username" id="name" />
+      <input type="password" placeholder="password" id="password" />
+      <button href="index.html" onclick="return check(this.form)">login</button>
+      <p class="message">Username: Book<br>Password: Book@123</p>
+    </form>
+  </div>
+</div>
+<script > 
+  function check(form)
+{
+
+if(form.name.value == "Book" && form.password.value == "Book@123")
+{
+  return true;
+}
+else
+{
+  alert("Error Password or Username")
+  return false;
+}
+}
+</script>
+</body>
+</html>

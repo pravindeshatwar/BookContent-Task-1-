@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title>Book</title>
+
+        <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>   
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <nav id="sidebar">
+                  <ul class="list-unstyled components">
+                    <p>Content</p>
+                    <li class="active">
+                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Grade 11</a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                            <li ><a href="#" >Science</a>
+                                <ul>
+                                 <li id="electric"><a id="el" href='#'><span id="elec">Electric Charge</span></a>
+                                 </li>          
+                              </ul>
+                            </li>
+                            <li><a href="#">Mathematics</a>
+                               <ul>
+                                 <li id="mathematics"><a id="el" href='#'><span id="math">Equation of line</span></a>
+                                 </li>          
+                              </ul>
+                            </li> 
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Grade 12</a>
+                        <ul class="collapse list-unstyled" id="pageSubmenu">
+                            <li><a href="#">Social Studies</a>
+                                <ul>
+                                 <li id="socialstudies"><a id="el" href='#'><span id="social">Rulers of USA</span></a>
+                                 </li>           
+                              </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div id="content" class="out">
+               <h2>Questions & Answers</h2>
+                <br>
+                <div id="output"></div>
+            </div>
+        </div>
+         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+   <script type="text/javascript">
+            
+    $(document).ready(function(){
+    $("#electric").click(function(){
+       $('#output').empty();
+      $.getJSON("data.json",function(data){
+         var json_data ='';
+         $.each(data, function(key,value){
+            var len=value[0].subjectList[0].chapterList[0].questionList.length;
+            for(var i=0;i<len;i++){
+                
+                json_data += '<p>' + 'Q' + (i+1) + ') ' + value[0].subjectList[0].chapterList[0].questionList[i].question + '</p>';
+
+                json_data += '<p>' + 'Ans: ' +value[0].subjectList[0].chapterList[0].questionList[i].answer + '</p>';
+            }
+         });
+            $('#output').append(json_data);
+         });
+      });
+      });
+
+
+   
+   $(document).ready(function(){
+   $("#mathematics").click(function(){
+          $('#output').empty();
+         $.getJSON("data.json",function(data){
+         var json_data ='';
+         $.each(data, function(key,value){
+            var len=value[0].subjectList[1].chapterList[0].questionList.length;
+            for(var i=0;i<len;i++){
+               
+               json_data += '<p>' + 'Q' + (i+1) + ') ' + value[0].subjectList[1].chapterList[0].questionList[i].question + '</p>';
+              
+               json_data += '<p>' + 'Ans: ' +value[0].subjectList[1].chapterList[0].questionList[i].answer + '</p>'; 
+         }
+         });
+         $('#output').append(json_data);
+            });
+         });
+      });
+
+
+   $(document).ready(function(){
+   $("#socialstudies").click(function(){
+      $('#output').empty();
+      $.getJSON("data.json",function(data){
+         var json_data ='';
+         $.each(data, function(key,value){
+            var len=value[1].subjectList[0].chapterList[0].questionList.length;
+            for(var i=0;i<len;i++){
+               
+               json_data += '<p>' + 'Q' + (i+1) + ') ' + value[1].subjectList[0].chapterList[0].questionList[i].question + '</p>';
+              
+               json_data += '<p>' + 'Ans: ' +value[1].subjectList[0].chapterList[0].questionList[i].answer + '</p>';
+           
+         }
+         });
+         $('#output').append(json_data);
+            });
+         });
+      });
+    </script>
+ </body>
+</html>
